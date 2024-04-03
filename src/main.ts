@@ -6,7 +6,8 @@ import { User } from './user/entities/user.entity';
 import { TypeOrmConfig } from './db/config/typeorm.config';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  await app.listen(3000);
+  const app = await NestFactory.createApplicationContext(AppModule);
+
+  await app.close()
 }
 bootstrap();

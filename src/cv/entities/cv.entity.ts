@@ -29,7 +29,6 @@ export class Cv extends BaseEntity  {
   path: string;
   
   @ManyToMany(() => Skill)
-  @JoinTable()
   skills: Skill[];
 
   @ManyToOne(() => User, (user) => user.cvs)
