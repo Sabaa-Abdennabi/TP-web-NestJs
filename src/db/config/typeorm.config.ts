@@ -20,9 +20,10 @@ export const TypeOrmConfig : TypeOrmModuleOptions & SeederOptions={
 }
 
 const dataSource = new DataSource(TypeOrmConfig as DataSourceOptions);
-
+/*
 dataSource.initialize().then(async () => {
   await dataSource.synchronize(true);
   await runSeeders(dataSource);
   process.exit();
 });
+*/

@@ -1,16 +1,27 @@
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { Skill } from 'src/skill/entities/skill.entity';
 import { User } from 'src/user/entities/user.entity';
 
-
 export class CreateCvDto {
-  id: number;
-
+  @IsNotEmpty()
   name: string;
+
+  @IsNotEmpty()
   firstname: string;
+
+  @IsNotEmpty()
   age: number;
+
+  @IsNotEmpty()
   cin: number;
+
+  @IsNotEmpty()
   job: string;
+
+  @IsNotEmpty()
   path: string;
-  skils: Skill[];
+
+  
+  skills: Skill[];
   user: User;
 }

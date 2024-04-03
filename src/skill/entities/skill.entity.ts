@@ -10,7 +10,7 @@ export class Skill extends BaseEntity
     @Column()
     designation: string;
 
-    @ManyToMany(() => Cv )
+    @ManyToMany(() => Cv , cv => cv.skills)
     @JoinTable()
     cvs:Cv[];
     

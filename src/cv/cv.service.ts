@@ -36,4 +36,9 @@ export class CvService {
       return found;
     }
   }
+  async update(id: number, updateCvDto: UpdateCvDto): Promise<Cv> {
+    const cv = await this.findById(id);
+    Object.assign(cv, updateCvDto);
+    return this.cvrespository.save(cv);
+  }
 }

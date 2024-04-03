@@ -22,6 +22,10 @@ export class CvController {
   async findOne(@Param('id') id: string) : Promise<Cv>{
     return await this.cvService.findById(+id);
   }
+  @Patch(':id')
+  async update(@Param('id') id: string, @Body() updateCvDto: UpdateCvDto) : Promise<Cv>{
+    return await this.cvService.update(+id, updateCvDto);
+  }
 
   @Delete(':id')
   async remove(@Param('id') id: string) :Promise<Cv>{
