@@ -4,8 +4,6 @@ import { SkillModule } from './skill/skill.module';
 import { CvModule } from './cv/cv.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmConfig } from './db/config/typeorm.config';
-import { MiddlewareConsumer, NestModule } from '@nestjs/common';
-
 @Module({
   imports: [
     TypeOrmModule.forRoot(TypeOrmConfig),

@@ -1,7 +1,6 @@
 import { User } from '../../user/entities/user.entity';
 import { setSeederFactory } from 'typeorm-extension';
 
-
 export default setSeederFactory(User, (faker) => {
   const user = new User();
   user.username = faker.internet.userName();

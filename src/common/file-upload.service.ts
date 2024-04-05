@@ -1,8 +1,5 @@
 // file-upload.service.ts
-
 import { Injectable, BadRequestException } from '@nestjs/common';
-import { multerConfig } from './multer.config';
-import { diskStorage } from 'multer';
 
 @Injectable()
 export class FileUploadService {

@@ -4,7 +4,6 @@ import { UpdateCvDto } from './dto/update-cv.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CvRepository } from './cv.repository';
 import { Cv } from './entities/cv.entity';
-import { Skill } from '../skill/entities/skill.entity';
 import { GetCvFilterDto } from './dto/get-cv-filter.dto';
 
 @Injectable()
@@ -18,12 +17,9 @@ export class CvService {
     return await this.cvrespository.createCv(createCvDto);
   }
 
-  async findAll(filter:GetCvFilterDto): Promise<Cv[]> {
+  async findAll(filter: GetCvFilterDto): Promise<Cv[]> {
     return await this.cvrespository.getCvs(filter);
   }
-
-
-
 
   async findById(id: number): Promise<Cv> {
     const found = await this.cvrespository.findOne({ where: { id } });

@@ -1,10 +1,10 @@
-import { IsNumber, IsOptional, IsString } from "class-validator";
+import { IsOptional, IsString } from 'class-validator';
 
 export class GetCvFilterDto {
-    @IsOptional()
-    @IsString()
-    search: string;
+  @IsOptional()
+  @IsString()
+  search: string;
 
-    @IsOptional()
-    age: number;
+  @IsOptional()
+  age: number;
 }

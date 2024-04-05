@@ -4,14 +4,13 @@ import {
   BaseEntity,
   Column,
   Entity,
-  JoinTable,
   ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
 @Entity()
-export class Cv extends BaseEntity  {
+export class Cv extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -27,7 +26,7 @@ export class Cv extends BaseEntity  {
   job: string;
   @Column()
   path: string;
-  
+
   @ManyToMany(() => Skill)
   skills: Skill[];
 

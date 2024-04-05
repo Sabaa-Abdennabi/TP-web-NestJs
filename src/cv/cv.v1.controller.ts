@@ -19,7 +19,7 @@ import { CreateCvDto } from './dto/create-cv.dto';
 import { UpdateCvDto } from './dto/update-cv.dto';
 import { Cv } from './entities/cv.entity';
 import { GetCvFilterDto } from './dto/get-cv-filter.dto';
-import { imageFileFilter, multerConfig } from 'src/common/multer.config';
+import { multerConfig } from 'src/common/multer.config';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { FileUploadService } from 'src/common/file-upload.service';
 import { Express } from 'express';
@@ -49,7 +49,7 @@ export class CvControllerV1 {
         ],
       }),
     )
-    file :Express.Multer.File,
+    file: Express.Multer.File,
   ) {
     return await this.fileUploadService.uploadFile(file);
     //return file;

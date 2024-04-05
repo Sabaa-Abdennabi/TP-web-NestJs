@@ -13,7 +13,6 @@ export default class UserSeeder implements Seeder {
     const userRepository = dataSource.getRepository(User);
     const cvsRepository = dataSource.getRepository(Cv);
     const skillRepository = dataSource.getRepository(Skill);
-
     const userFactory = factoryManager.get(User);
     const cvsFactory = factoryManager.get(Cv);
     const skillFactory = factoryManager.get(Skill);

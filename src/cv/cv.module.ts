@@ -1,4 +1,4 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { CvService } from './cv.service';
 import { CvControllerV1 } from './cv.v1.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -6,8 +6,6 @@ import { CvRepository } from './cv.repository';
 import { FileUploadService } from 'src/common/file-upload.service';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
-
-
 
 @Module({
   imports: [

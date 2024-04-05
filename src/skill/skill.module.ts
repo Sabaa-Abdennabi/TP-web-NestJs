@@ -5,8 +5,8 @@ import { SkillRepository } from './skill.repository';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports :[TypeOrmModule.forFeature([SkillRepository])],
+  imports: [TypeOrmModule.forFeature([SkillRepository])],
   controllers: [SkillController],
-  providers: [SkillService,SkillRepository],
+  providers: [SkillService, SkillRepository],
 })
 export class SkillModule {}
