@@ -6,30 +6,37 @@ import {
   Param,
   Delete,
   ValidationPipe,
+  UseGuards
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UsePipes } from '@nestjs/common/decorators/core/use-pipes.decorator';
 import { User } from './entities/user.entity';
+import { AdminGuard } from 'src/guards/admin.guard';
+import { JwtAuthGuard } from 'src/guards/auth.guard';
 
 @Controller('user')
 export class UserController {
   constructor(private userService: UserService) {}
   @Post()
+  @UseGuards(JwtAuthGuard)
   @UsePipes(ValidationPipe)
   async create(@Body() createUserDto: CreateUserDto): Promise<User> {
     return await this.userService.create(createUserDto);
   }
   @Get('')
-  async findAll(): Promise<User[]> {
+  @UseGuards(AdminGuard)
+  async findAll():Promise<User[]> {
     return await this.userService.findAll();
   }
   @Get('/:id')
-  async findById(@Param('id') id: string): Promise<User> {
+  @UseGuards(JwtAuthGuard)
+  async findById(@Param('id' ) id: string):Promise<User> {
     return await this.userService.findById(+id);
   }
   @Delete('/:id')
-  async remove(@Param('id') id: string): Promise<User> {
+  @UseGuards(JwtAuthGuard)
+  async remove(@Param('id') id: string):Promise<User> {
     return await this.userService.remove(+id);
   }
 }
