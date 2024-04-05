@@ -10,8 +10,7 @@ async function bootstrap() {
   const app=await NestFactory.create(AppModule);
   app.enableVersioning();
   await app.listen(3000);
-*/
-/*  
+
   const app = await NestFactory.createApplicationContext(AppModule);
 
   //update user with id 1 and change firstname to 'John'
