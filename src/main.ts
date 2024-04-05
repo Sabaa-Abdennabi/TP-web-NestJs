@@ -4,13 +4,15 @@ import { CvService } from './cv/cv.service';
 import { UpdateCvDto } from './cv/dto/update-cv.dto';
 import { SkillService } from './skill/skill.service';
 import { UserService } from './user/user.service';
+import express from 'express';
+import path from 'path';
 
 async function bootstrap() {
-/*
+
   const app=await NestFactory.create(AppModule);
   app.enableVersioning();
   await app.listen(3000);
-*/
+
 /*  
   const app = await NestFactory.createApplicationContext(AppModule);
 

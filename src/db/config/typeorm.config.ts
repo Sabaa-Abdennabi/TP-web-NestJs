@@ -6,12 +6,12 @@ import { DataSource, DataSourceOptions } from "typeorm";
 import { runSeeders, SeederOptions } from "typeorm-extension";
 
 export const TypeOrmConfig : TypeOrmModuleOptions & SeederOptions={
-    type : 'postgres',
+    type : 'mysql',
     host :'localhost',
-    port :5432,
-    username :'postgres',
-    password :'postgres',
-    database :'skillcv2',
+    port :3306,
+    username :'root',
+    password :'',
+    database :'gestionnaire_cv',
     entities: [User,Skill,Cv],
     synchronize : true,
     seeds: ['src/db/seeds/**/*{.ts,.js}'],

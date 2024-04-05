@@ -1,3 +1,6 @@
 npm install class-validator -save
 npm i @nestjs/mapped-types -save
-pm i class-transformer -save
+npm i class-transformer -save
+npm install --save @nestjs/platform-express multer
+npm install --save @nestjs/serve-static
+npm i -D @types/multer
