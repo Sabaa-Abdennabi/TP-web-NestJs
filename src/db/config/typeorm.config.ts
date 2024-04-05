@@ -4,6 +4,7 @@ import { Skill } from "../../skill/entities/skill.entity";
 import { User } from "../../user/entities/user.entity";
 import { DataSource, DataSourceOptions } from "typeorm";
 import { runSeeders, SeederOptions } from "typeorm-extension";
+import { UserAuth } from "src/auth/user.entity";
 
 export const TypeOrmConfig : TypeOrmModuleOptions & SeederOptions={
     type : 'postgres',
@@ -12,7 +13,7 @@ export const TypeOrmConfig : TypeOrmModuleOptions & SeederOptions={
     username :'postgres',
     password :'postgres',
     database :'skillcv',
-    entities: [User,Skill,Cv],
+    entities: [User,Skill,Cv,UserAuth],
     synchronize : true,
     seeds: ['src/db/seeds/**/*{.ts,.js}'],
     factories: ['src/db/factories/**/*{.ts,.js}'],

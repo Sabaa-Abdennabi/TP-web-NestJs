@@ -1,11 +1,15 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, ValidationPipe } from '@nestjs/common';
 import { CvService } from './cv.service';
 import { CreateCvDto } from './dto/create-cv.dto';
 import { UpdateCvDto } from './dto/update-cv.dto';
 import { Cv } from './entities/cv.entity';
+import { GetCvFilterDto } from './dto/get-cv-filter.dto';
 
-@Controller('cv')
-export class CvController {
+@Controller({
+  path:'cv',
+  version:'1',
+})
+export class CvControllerV1 {
   constructor(private readonly cvService: CvService) {}
 
   @Post()
@@ -13,9 +17,9 @@ export class CvController {
     return await this.cvService.create(createCvDto);
   }
 
-  @Get()
-  async findAll():Promise<Cv[]> {
-    return await this.cvService.findAll();
+  @Get('')
+  async findAll(@Query(ValidationPipe)filter : GetCvFilterDto):Promise<Cv[]> {
+    return await this.cvService.findAll(filter);
   }
 
   @Get(':id')
