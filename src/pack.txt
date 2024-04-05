@@ -1,0 +1,3 @@
+npm install class-validator -save
+npm i @nestjs/mapped-types -save
+pm i class-transformer -save
