@@ -2,7 +2,7 @@ import { Seeder, SeederFactoryManager } from 'typeorm-extension';
 import { DataSource } from 'typeorm';
 import { User } from '../../user/entities/user.entity';
 import { Cv } from '../../cv/entities/cv.entity';
-import * as faker from 'faker';
+import { faker } from '@faker-js/faker';
 import { Skill } from '../../skill/entities/skill.entity';
 
 export default class UserSeeder implements Seeder {
@@ -22,7 +22,7 @@ export default class UserSeeder implements Seeder {
         .fill('')
         .map(async () => {
           const made = await cvsFactory.make({
-            user: faker.random.arrayElement(users),
+            user: faker.helpers.arrayElement(users),
           });
           return made;
         }),
@@ -33,7 +33,7 @@ export default class UserSeeder implements Seeder {
         .fill('')
         .map(async () => {
           const made = await skillFactory.make({
-            cvs: faker.random.arrayElements(cvs),
+            cvs: faker.helpers.arrayElements(cvs),
           });
           return made;
         }),

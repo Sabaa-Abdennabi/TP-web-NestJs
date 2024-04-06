@@ -34,7 +34,6 @@
     "bcrypt": "",
     "class-transformer": "",
     "class-validator": "",
-    "faker": "",
     "jsonwebtoken": "",
     "multer": "",
     "passport": "",
@@ -47,6 +46,7 @@
     "typeorm-extension": ""
   },
   "devDependencies": {
+    "@faker-js/faker": "",
     "@nestjs/cli": "",
     "@nestjs/schematics": "",
     "@nestjs/testing": "",
