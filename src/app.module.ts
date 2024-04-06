@@ -12,6 +12,7 @@ import {
   Module,
   RequestMethod,
 } from '@nestjs/common';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import {
     UserModule,
     SkillModule,
     CvModule,
+    AuthModule
   ],
 })
 export class AppModule implements NestModule {

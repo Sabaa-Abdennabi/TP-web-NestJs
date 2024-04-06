@@ -1,3 +1,4 @@
+import { Users } from 'src/auth/auth.entity';
 import { Cv } from '../../cv/entities/cv.entity';
 import { Skill } from '../../skill/entities/skill.entity';
 import { User } from '../../user/entities/user.entity';
@@ -12,7 +13,7 @@ import { runSeeders, SeederOptions } from 'typeorm-extension';
     username: 'postgres',
     password: 'postgres',
     database: 'postgres',
-    entities: [User, Skill, Cv],
+    entities: [User, Skill, Cv,Users],
     seeds: ['src/db/seeds/**/*{.ts,.js}'],
     factories: ['src/db/factories/**/*{.ts,.js}'],
   };
