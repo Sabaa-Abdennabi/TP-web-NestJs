@@ -33,10 +33,11 @@ import { Users } from './auth/auth.entity';
     AuthModule
   ],
 })
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(AuthMiddleware)
-      .forRoutes({ path: '/v2/cv', method: RequestMethod.GET });
-  }
-}
+export class AppModule{}
+// export class AppModule implements NestModule {
+//   configure(consumer: MiddlewareConsumer) {
+//     consumer
+//       .apply(AuthMiddleware)
+//       .forRoutes({ path: '/v2/cv', method: RequestMethod.GET });
+//   }
+// }

@@ -11,6 +11,7 @@ import { SignInDto } from './dto/signIn.Dto';
 import { AdminGuard } from 'src/guards/admin.guard';
 import { AuthGuard } from '@nestjs/passport';
 import { JWTAuthGuard } from 'src/guards/auth.guard';
+import { GetUser } from './decorator';
 
 @Controller('auth')
 export class AuthController {
@@ -29,6 +30,11 @@ export class AuthController {
   @Post('/admin')
   @UseGuards(AdminGuard)
   Test() {
-    return 'Test!!!!!!';
+    return "Welcome Admin";
+  }
+  @Post('/authorized')
+  @UseGuards(JWTAuthGuard)
+  authorized(@GetUser() user) {
+    return user;
   }
 }

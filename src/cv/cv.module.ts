@@ -7,6 +7,7 @@ import { FileUploadService } from 'src/common/file-upload.service';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { CvControllerV2 } from './cv.v2.controller';
+import { JwtModule, JwtService } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { CvControllerV2 } from './cv.v2.controller';
       // Tell NestJS to serve the files under ~/uploads/
       serveRoot: '/public/',
     }),
+    JwtModule
   ],
   controllers: [CvControllerV1,CvControllerV2],
   providers: [CvService, CvRepository, FileUploadService],

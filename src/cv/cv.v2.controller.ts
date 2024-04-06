@@ -29,8 +29,9 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { multerConfig } from 'src/common/multer.config';
 import { FileUploadService } from 'src/common/file-upload.service';
 import { Express } from 'express';
+import { JWTAuthGuard } from 'src/guards/auth.guard';
+import { GetUser } from 'src/auth/decorator';
 
-@UseGuards(UserIdExistsGuard)
 @Controller({
   path: 'cv',
   version: '2',
@@ -42,33 +43,40 @@ export class CvControllerV2 {
   ) {}
 
   @Post()
+  @UseGuards(JWTAuthGuard)
   async create(@Body() createCvDto: CreateCvDto): Promise<Cv> {
     return await this.cvService.create(createCvDto);
   }
 
-  @Get('token')
-  async gettoken(): Promise<any> {
-    const payload = {
-      userId: '10',
-    };
-    const secret = 'secretKey';
-    const token = sign(payload, secret);
-    return token;
-  }
+  // @Get('token')
+  // async gettoken(): Promise<any> {
+  //   const payload = {
+  //     userId: '10',
+  //   };
+  //   const secret = 'secretKey';
+  //   const token = sign(payload, secret);
+  //   return token;
+  // }
 
   @Get('')
+  @UseGuards(JWTAuthGuard)
   async findAll(
+    @GetUser() user,
     @Req() req: Request,
     @Query(ValidationPipe) filter: GetCvFilterDto,
   ): Promise<Cv[]> {
+    if (user.role === 'admin') return await this.cvService.findAll(filter);
+    filter.search = user.username;
     return await this.cvService.findAll(filter);
   }
 
   @Get('/:id')
+  @UseGuards(JWTAuthGuard)
   async findOne(@Param('id') id: string): Promise<Cv> {
     return await this.cvService.findById(+id);
   }
   @Patch('/:id')
+  @UseGuards(JWTAuthGuard)
   async update(
     @Param('id') id: string,
     @Body() updateCvDto: UpdateCvDto,
@@ -77,10 +85,12 @@ export class CvControllerV2 {
   }
 
   @Delete('/:id')
+  @UseGuards(JWTAuthGuard)
   async remove(@Param('id') id: string): Promise<Cv> {
     return await this.cvService.remove(+id);
   }
   @Post('upload')
+  @UseGuards(JWTAuthGuard)
   @UseInterceptors(FileInterceptor('file', multerConfig))
   async uploadFile(
     @UploadedFile(
