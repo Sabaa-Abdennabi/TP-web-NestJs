@@ -8,10 +8,10 @@ export default setSeederFactory(Cv, (f) => {
   const name = faker.person;
   const system = faker.system;
 
-  cv.age = datatype();
+  cv.age = datatype({ max: 120 });
   cv.firstname = name.firstName();
   cv.name = name.lastName();
-  cv.cin = datatype();
+  cv.cin = datatype({ max: 200000000 });
   cv.job = name.jobTitle();
   cv.path = system.filePath();
 

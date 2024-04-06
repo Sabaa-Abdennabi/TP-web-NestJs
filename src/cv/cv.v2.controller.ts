@@ -8,34 +8,34 @@ import {
   Delete,
   Query,
   ValidationPipe,
+  UseGuards,
+  Req,
+  Version,
   UseInterceptors,
   UploadedFile,
-  ParseFilePipe,
-  MaxFileSizeValidator,
-  FileTypeValidator,
+  ParseFilePipeBuilder,
+  HttpStatus,
 } from '@nestjs/common';
 import { CvService } from './cv.service';
 import { CreateCvDto } from './dto/create-cv.dto';
 import { UpdateCvDto } from './dto/update-cv.dto';
 import { Cv } from './entities/cv.entity';
 import { GetCvFilterDto } from './dto/get-cv-filter.dto';
-import { multerConfig } from 'src/common/multer.config';
+import { AuthMiddleware } from './middlewear/auth.middleware';
+import { sign } from 'jsonwebtoken';
+import { version } from 'typescript';
+import { UserIdExistsGuard } from './user-id-exists.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { multerConfig } from 'src/common/multer.config';
 import { FileUploadService } from 'src/common/file-upload.service';
 import { Express } from 'express';
-import {
-  UseGuards,
-  Req,
-  Version,
-  ParseFilePipeBuilder,
-  HttpStatus,
-} from '@nestjs/common';
 
+@UseGuards(UserIdExistsGuard)
 @Controller({
   path: 'cv',
-  version: '1',
+  version: '2',
 })
-export class CvControllerV1 {
+export class CvControllerV2 {
   constructor(
     private readonly cvService: CvService,
     private readonly fileUploadService: FileUploadService,
@@ -44,6 +44,41 @@ export class CvControllerV1 {
   @Post()
   async create(@Body() createCvDto: CreateCvDto): Promise<Cv> {
     return await this.cvService.create(createCvDto);
+  }
+
+  @Get('token')
+  async gettoken(): Promise<any> {
+    const payload = {
+      userId: '10',
+    };
+    const secret = 'secretKey';
+    const token = sign(payload, secret);
+    return token;
+  }
+
+  @Get('')
+  async findAll(
+    @Req() req: Request,
+    @Query(ValidationPipe) filter: GetCvFilterDto,
+  ): Promise<Cv[]> {
+    return await this.cvService.findAll(filter);
+  }
+
+  @Get('/:id')
+  async findOne(@Param('id') id: string): Promise<Cv> {
+    return await this.cvService.findById(+id);
+  }
+  @Patch('/:id')
+  async update(
+    @Param('id') id: string,
+    @Body() updateCvDto: UpdateCvDto,
+  ): Promise<Cv> {
+    return await this.cvService.update(+id, updateCvDto);
+  }
+
+  @Delete('/:id')
+  async remove(@Param('id') id: string): Promise<Cv> {
+    return await this.cvService.remove(+id);
   }
   @Post('upload')
   @UseInterceptors(FileInterceptor('file', multerConfig))
@@ -58,27 +93,5 @@ export class CvControllerV1 {
   ) {
     return await this.fileUploadService.uploadFile(file);
     //return file;
-  }
-
-  @Get('')
-  async findAll(@Query(ValidationPipe) filter: GetCvFilterDto): Promise<Cv[]> {
-    return await this.cvService.findAll(filter);
-  }
-
-  @Get(':id')
-  async findOne(@Param('id') id: string): Promise<Cv> {
-    return await this.cvService.findById(+id);
-  }
-  @Patch(':id')
-  async update(
-    @Param('id') id: string,
-    @Body() updateCvDto: UpdateCvDto,
-  ): Promise<Cv> {
-    return await this.cvService.update(+id, updateCvDto);
-  }
-
-  @Delete(':id')
-  async remove(@Param('id') id: string): Promise<Cv> {
-    return await this.cvService.remove(+id);
   }
 }

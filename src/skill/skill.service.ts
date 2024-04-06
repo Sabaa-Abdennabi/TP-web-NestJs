@@ -16,9 +16,7 @@ export class SkillService {
   }
 
   async findAll(): Promise<Skill[]> {
-    return await this.skillrespository.find({
-      relations: ['cv'],
-    });
+    return await this.skillrespository.find();
   }
 
   async findById(id: number): Promise<Skill> {
@@ -26,7 +24,7 @@ export class SkillService {
     if (found) {
       return found;
     }
-    throw new NotFoundException(`User with id ${id} not found`);
+    throw new NotFoundException(`Skill with id ${id} not found`);
   }
 
   async removeById(id: number): Promise<Skill> {

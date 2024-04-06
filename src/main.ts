@@ -11,8 +11,6 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableVersioning();
   await app.listen(3000);
-  console.log('YEP I SKIPPED THIS');
-
   /*  
   const app = await NestFactory.createApplicationContext(AppModule);
 

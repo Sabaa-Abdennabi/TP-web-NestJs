@@ -6,6 +6,7 @@ import { CvRepository } from './cv.repository';
 import { FileUploadService } from 'src/common/file-upload.service';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { CvControllerV2 } from './cv.v2.controller';
 
 @Module({
   imports: [
@@ -16,7 +17,7 @@ import { join } from 'path';
       serveRoot: '/public/',
     }),
   ],
-  controllers: [CvControllerV1],
+  controllers: [CvControllerV1,CvControllerV2],
   providers: [CvService, CvRepository, FileUploadService],
 })
 export class CvModule {}
