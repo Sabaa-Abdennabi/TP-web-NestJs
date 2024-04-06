@@ -13,13 +13,13 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UsePipes } from '@nestjs/common/decorators/core/use-pipes.decorator';
 import { User } from './entities/user.entity';
 import { AdminGuard } from 'src/guards/admin.guard';
-import { JwtAuthGuard } from 'src/guards/auth.guard';
+import { JWTAuthGuard } from 'src/guards/auth.guard';
 
 @Controller('user')
 export class UserController {
   constructor(private userService: UserService) {}
   @Post()
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JWTAuthGuard)
   @UsePipes(ValidationPipe)
   async create(@Body() createUserDto: CreateUserDto): Promise<User> {
     return await this.userService.create(createUserDto);
@@ -30,12 +30,12 @@ export class UserController {
     return await this.userService.findAll();
   }
   @Get('/:id')
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JWTAuthGuard)
   async findById(@Param('id') id: string): Promise<User> {
     return await this.userService.findById(+id);
   }
   @Delete('/:id')
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JWTAuthGuard)
   async remove(@Param('id') id: string): Promise<User> {
     return await this.userService.remove(+id);
   }

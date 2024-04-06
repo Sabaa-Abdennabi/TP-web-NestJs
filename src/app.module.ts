@@ -13,6 +13,7 @@ import {
   RequestMethod,
 } from '@nestjs/common';
 import { AuthModule } from './auth/auth.module';
+import { Users } from './auth/auth.entity';
 
 @Module({
   imports: [
@@ -23,7 +24,7 @@ import { AuthModule } from './auth/auth.module';
       username: 'postgres',
       password: 'postgres',
       database: 'postgres',
-      entities: [User, Skill, Cv],
+      entities: [User, Skill, Cv,Users],
       synchronize: true,
     }),
     UserModule,

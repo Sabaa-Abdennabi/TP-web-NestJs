@@ -15,6 +15,5 @@ export class SignUpDto {
   })
   password: string;
   @IsString()
-  @IsIn(['candidat', 'recruteur'], { message: 'role must be "candidat" or "recruteur"' })
   role: string;
 }

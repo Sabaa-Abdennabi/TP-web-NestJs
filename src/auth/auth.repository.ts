@@ -8,6 +8,9 @@ import { SignInDto } from './dto/signIn.Dto';
 
 @Injectable()
 export class AuthRepository extends Repository<Users> {
+  constructor(private dataSource: DataSource) {
+    super(Users, dataSource.createEntityManager());
+  }
   async SignUp(signUpDto: SignUpDto) {
     const user = new Users();
     const { username, role, email, password } = signUpDto;
@@ -18,14 +21,15 @@ export class AuthRepository extends Repository<Users> {
     user.salt = await bcrypt.genSalt();
     user.password = await this.hashPassword(password, user.salt);
 
-     await this.save(user);
+    await user.save();
   }
-  async validateUserPassword(signInDto: SignInDto): Promise<string> {
-    const { username, password } = signInDto ;
-    const user = await this.findOneBy({ username });
-
-    if (user && await user.validatePassword(password)) {
-      return user.username;
+  async validateUserPassword(
+    signInDto: SignInDto,
+  ): Promise<{ username: string; role: string }> {
+    const { username, password } = signInDto;
+    const user = await this.findOne({ where: { username: username } });
+    if (user && (await user.validatePassword(password))) {
+      return { username: user.username, role: user.role };
     } else {
       return null;
     }
