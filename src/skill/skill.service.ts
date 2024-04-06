@@ -8,7 +8,6 @@ import { Skill } from './entities/skill.entity';
 @Injectable()
 export class SkillService {
   constructor(
-    @InjectRepository(SkillRepository)
     private skillrespository: SkillRepository,
   ) {}
 

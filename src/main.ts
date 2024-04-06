@@ -1,3 +1,4 @@
+
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { CvService } from './cv/cv.service';
@@ -6,11 +7,11 @@ import { SkillService } from './skill/skill.service';
 import { UserService } from './user/user.service';
 
 async function bootstrap() {
-/*
+
   const app=await NestFactory.create(AppModule);
-  app.enableVersioning();
+
   await app.listen(3000);
-*/
+}
 /*  
   const app = await NestFactory.createApplicationContext(AppModule);
 
@@ -70,5 +71,5 @@ async function bootstrap() {
     await app.close();
   }
   */
-}
+
 bootstrap();

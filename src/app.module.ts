@@ -5,6 +5,8 @@ import { CvModule } from './cv/cv.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmConfig } from './db/config/typeorm.config';
 import { MiddlewareConsumer, NestModule } from '@nestjs/common';
+import { AuthModule } from './auth/auth.module';
+import { AuthController } from './auth/auth.controller';
 
 @Module({
   imports: [
@@ -12,6 +14,8 @@ import { MiddlewareConsumer, NestModule } from '@nestjs/common';
     UserModule,
     SkillModule,
     CvModule,
+    AuthModule,
   ],
+  controllers: [],
 })
 export class AppModule {}
