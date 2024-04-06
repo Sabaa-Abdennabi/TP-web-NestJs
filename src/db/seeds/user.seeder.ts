@@ -10,19 +10,13 @@ export default class UserSeeder implements Seeder {
     dataSource: DataSource,
     factoryManager: SeederFactoryManager,
   ): Promise<void> {
-    const userRepository = dataSource.getRepository(User);
+    // const userRepository = dataSource.getRepository(User);
     const cvsRepository = dataSource.getRepository(Cv);
     const skillRepository = dataSource.getRepository(Skill);
     const userFactory = factoryManager.get(User);
     const cvsFactory = factoryManager.get(Cv);
     const skillFactory = factoryManager.get(Skill);
-    /*
-    await userRepository.clear();
-    await cvsRepository.clear();
-    await skillRepository.clear();*/
-
     const users = await userFactory.saveMany(30);
-
     const cvs = await Promise.all(
       Array(30)
         .fill('')
@@ -33,9 +27,7 @@ export default class UserSeeder implements Seeder {
           return made;
         }),
     );
-
     await cvsRepository.save(cvs);
-
     const skills = await Promise.all(
       Array(30)
         .fill('')

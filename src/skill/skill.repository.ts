@@ -1,4 +1,4 @@
-import { Repository, EntityRepository, DataSource } from 'typeorm';
+import { Repository, DataSource } from 'typeorm';
 import { Skill } from './entities/skill.entity';
 import { Injectable } from '@nestjs/common';
 import { CreateSkillDto } from './dto/create-skill.dto';

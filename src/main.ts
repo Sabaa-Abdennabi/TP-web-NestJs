@@ -1,20 +1,19 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { CvService } from './cv/cv.service';
-import { UpdateCvDto } from './cv/dto/update-cv.dto';
-import { SkillService } from './skill/skill.service';
-import { UserService } from './user/user.service';
-import express from 'express';
-import path from 'path';
+// import { CvService } from './cv/cv.service';
+// import { UpdateCvDto } from './cv/dto/update-cv.dto';
+// import { SkillService } from './skill/skill.service';
+// import { UserService } from './user/user.service';
+// import express from 'express';
+// import path from 'path';
 
 async function bootstrap() {
-
-
-  const app=await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule);
   app.enableVersioning();
   await app.listen(3000);
+  console.log('YEP I SKIPPED THIS');
 
-/*  
+  /*  
   const app = await NestFactory.createApplicationContext(AppModule);
 
   //update user with id 1 and change firstname to 'John'

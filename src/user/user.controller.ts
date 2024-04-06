@@ -6,7 +6,7 @@ import {
   Param,
   Delete,
   ValidationPipe,
-  UseGuards
+  UseGuards,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -26,17 +26,17 @@ export class UserController {
   }
   @Get('')
   @UseGuards(AdminGuard)
-  async findAll():Promise<User[]> {
+  async findAll(): Promise<User[]> {
     return await this.userService.findAll();
   }
   @Get('/:id')
   @UseGuards(JwtAuthGuard)
-  async findById(@Param('id' ) id: string):Promise<User> {
+  async findById(@Param('id') id: string): Promise<User> {
     return await this.userService.findById(+id);
   }
   @Delete('/:id')
   @UseGuards(JwtAuthGuard)
-  async remove(@Param('id') id: string):Promise<User> {
+  async remove(@Param('id') id: string): Promise<User> {
     return await this.userService.remove(+id);
   }
 }
