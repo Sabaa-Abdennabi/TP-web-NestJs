@@ -6,9 +6,7 @@ import { Skill } from './entities/skill.entity';
 
 @Injectable()
 export class SkillService {
-  constructor(
-    private skillrespository: SkillRepository,
-  ) {}
+  constructor(private skillrespository: SkillRepository) {}
 
   async create(createSkillDto: CreateSkillDto): Promise<Skill> {
     return await this.skillrespository.save(createSkillDto);

@@ -13,7 +13,7 @@ import { runSeeders, SeederOptions } from 'typeorm-extension';
     username: 'postgres',
     password: 'postgres',
     database: 'postgres',
-    entities: [User, Skill, Cv,Users],
+    entities: [User, Skill, Cv, Users],
     seeds: ['src/db/seeds/**/*{.ts,.js}'],
     factories: ['src/db/factories/**/*{.ts,.js}'],
   };

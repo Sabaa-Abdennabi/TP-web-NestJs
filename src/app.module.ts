@@ -12,9 +12,10 @@ import {
   Module,
   RequestMethod,
 } from '@nestjs/common';
-import { AuthModule } from './auth/auth.module';
 import { Users } from './auth/auth.entity';
-
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
+import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -24,16 +25,21 @@ import { Users } from './auth/auth.entity';
       username: 'postgres',
       password: 'postgres',
       database: 'postgres',
-      entities: [User, Skill, Cv,Users],
+      entities: [User, Skill, Cv, Users],
       synchronize: true,
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', '..', 'public'),
+      // Tell NestJS to serve the files under ~/uploads/
+      serveRoot: '/public/',
     }),
     UserModule,
     SkillModule,
     CvModule,
-    AuthModule
+    AuthModule,
   ],
 })
-export class AppModule{}
+export class AppModule {}
 // export class AppModule implements NestModule {
 //   configure(consumer: MiddlewareConsumer) {
 //     consumer

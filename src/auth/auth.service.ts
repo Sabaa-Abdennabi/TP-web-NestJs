@@ -11,7 +11,7 @@ export class AuthService {
   constructor(
     @InjectRepository(AuthRepository)
     private authRepository: AuthRepository,
-    private jwtService: JwtService
+    private jwtService: JwtService,
   ) {}
   async signUp(signUpDto: SignUpDto): Promise<void> {
     return this.authRepository.SignUp(signUpDto);
@@ -23,7 +23,7 @@ export class AuthService {
       throw new UnauthorizedException('Invalid credentials');
     }
 
-    const payload: JwtPayload = { username:obj.username,role:obj.role };
+    const payload: JwtPayload = { username: obj.username, role: obj.role };
     const accessToken = await this.jwtService.sign(payload);
 
     return { accessToken };

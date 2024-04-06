@@ -12,7 +12,9 @@ export class AuthMiddleware implements NestMiddleware {
     if (!token) {
       return res
         .status(HttpStatus.UNAUTHORIZED)
-        .json({ message: 'Cannot access the resource, no auth token provided.' });
+        .json({
+          message: 'Cannot access the resource, no auth token provided.',
+        });
     }
     try {
       const decoded = verify(token, 'secretKey');
@@ -22,7 +24,9 @@ export class AuthMiddleware implements NestMiddleware {
       } else {
         return res
           .status(HttpStatus.UNAUTHORIZED)
-          .json({ message: 'Cannot access the resource, no userId in the token.' });
+          .json({
+            message: 'Cannot access the resource, no userId in the token.',
+          });
       }
     } catch (err) {
       return res

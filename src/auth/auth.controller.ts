@@ -30,7 +30,7 @@ export class AuthController {
   @Post('/admin')
   @UseGuards(AdminGuard)
   Test() {
-    return "Welcome Admin";
+    return 'Welcome Admin';
   }
   @Post('/authorized')
   @UseGuards(JWTAuthGuard)

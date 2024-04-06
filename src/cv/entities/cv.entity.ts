@@ -27,9 +27,9 @@ export class Cv extends BaseEntity {
   @Column()
   path: string;
 
-  @ManyToMany(() => Skill)
+  @ManyToMany(() => Skill, (skill) => skill.cvs, { eager: true })
   skills: Skill[];
 
-  @ManyToOne(() => User, (user) => user.cvs)
+  @ManyToOne(() => User, (user) => user.cvs, { eager: true })
   user: User;
 }

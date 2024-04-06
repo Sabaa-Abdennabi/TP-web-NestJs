@@ -10,17 +10,7 @@ export class CvRepository extends Repository<Cv> {
     super(Cv, dataSource.createEntityManager());
   }
   async createCv(createCvDto: CreateCvDto): Promise<Cv> {
-    const cv = new Cv();
-    const { name, firstname, age, cin, job, path, skills, user } = createCvDto;
-    cv.name = name;
-    cv.firstname = firstname;
-    cv.age = age;
-    cv.cin = cin;
-    cv.job = job;
-    cv.path = path;
-    cv.skills = skills;
-    cv.user = user;
-    return await this.save(cv);
+    return await this.save(createCvDto);
   }
 
   async getCvs(filterDto: GetCvFilterDto): Promise<Cv[]> {
@@ -35,6 +25,9 @@ export class CvRepository extends Repository<Cv> {
     if (age) {
       query.andWhere('cv.age = :age', { age });
     }
+
+    query.leftJoinAndSelect('cv.user', 'user');
+    query.leftJoinAndSelect('cv.skills', 'skill');
     const cvs = await query.getMany();
     return cvs;
   }

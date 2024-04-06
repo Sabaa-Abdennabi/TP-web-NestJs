@@ -1,6 +1,4 @@
-import { PickType } from "@nestjs/mapped-types";
-import { SignUpDto } from "./signUpDto";
+import { PickType } from '@nestjs/mapped-types';
+import { SignUpDto } from './signUpDto';
 
-
-export class 
-SignInDto extends PickType(SignUpDto, ['username', 'password']) {}
+export class SignInDto extends PickType(SignUpDto, ['username', 'password']) {}
