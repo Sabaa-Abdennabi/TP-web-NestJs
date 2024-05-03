@@ -1,6 +1,7 @@
 import { UserModule } from './user/user.module';
 import { SkillModule } from './skill/skill.module';
 import { CvModule } from './cv/cv.module';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './user/entities/user.entity';
 import { Cv } from './cv/entities/cv.entity';
@@ -16,6 +17,7 @@ import { Users } from './auth/auth.entity';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { AuthModule } from './auth/auth.module';
+import { CvHistoryModule } from './cvhistory/cvhistory.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -37,6 +39,8 @@ import { AuthModule } from './auth/auth.module';
     SkillModule,
     CvModule,
     AuthModule,
+    CvHistoryModule,
+    EventEmitterModule.forRoot()
   ],
 })
 export class AppModule {}

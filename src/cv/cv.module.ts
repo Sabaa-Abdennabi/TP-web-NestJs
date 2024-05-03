@@ -7,9 +7,10 @@ import { FileUploadService } from 'src/common/file-upload.service';
 
 import { CvControllerV2 } from './cv.v2.controller';
 import { JwtModule, JwtService } from '@nestjs/jwt';
+import { CvHistoryModule } from 'src/cvhistory/cvhistory.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([CvRepository]), JwtModule],
+  imports: [TypeOrmModule.forFeature([CvRepository]), JwtModule, CvHistoryModule],
   controllers: [CvControllerV1, CvControllerV2],
   providers: [CvService, CvRepository, FileUploadService],
 })
