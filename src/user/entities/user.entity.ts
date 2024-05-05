@@ -1,3 +1,4 @@
+import { CvHistory } from 'src/cvhistory/cvhistory.entity';
 import { Cv } from '../../cv/entities/cv.entity';
 import {
   BaseEntity,
@@ -23,4 +24,7 @@ export class User extends BaseEntity {
 
   @OneToMany(() => Cv, (cv) => cv.user)
   cvs: Cv[];
+
+  @OneToMany(() => CvHistory, (cvh) => cvh.actionBy)
+  cvHistories : CvHistory[]
 }

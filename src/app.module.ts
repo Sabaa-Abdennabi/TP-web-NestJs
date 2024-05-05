@@ -18,6 +18,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { AuthModule } from './auth/auth.module';
 import { CvHistoryModule } from './cvhistory/cvhistory.module';
+import { CvHistory } from './cvhistory/cvhistory.entity';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -25,9 +26,9 @@ import { CvHistoryModule } from './cvhistory/cvhistory.module';
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: 'postgres',
+      password: '0000',
       database: 'postgres',
-      entities: [User, Skill, Cv, Users],
+      entities: [User, Skill, Cv, Users, CvHistory],
       synchronize: true,
     }),
     ServeStaticModule.forRoot({

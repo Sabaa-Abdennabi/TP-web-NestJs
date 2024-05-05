@@ -11,7 +11,7 @@ import { runSeeders, SeederOptions } from 'typeorm-extension';
     port: 5432,
     synchronize: true,
     username: 'postgres',
-    password: 'postgres',
+    password: '0000',
     database: 'postgres',
     entities: [User, Skill, Cv, Users],
     seeds: ['src/db/seeds/**/*{.ts,.js}'],

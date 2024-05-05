@@ -1,10 +1,14 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CvHistoryService } from './cvHistory.service';
+import { CvHistoryService } from './cvhistory.service'; // Corrected import
+
 import { CvHistory } from './cvhistory.entity';
-import { CvListener } from 'src/cv/cv.listener';
+import { CvHistoryController } from './cvhistory.controller';
+import { CvHistoryRepository } from './cvhistory.repository';
+
 @Module({
-  imports: [TypeOrmModule.forFeature([CvHistory])],
-  providers: [CvHistoryService, CvListener]
+  controllers: [CvHistoryController],
+  imports: [TypeOrmModule.forFeature([CvHistoryRepository])],
+  providers: [CvHistoryService, CvHistoryRepository],
 })
 export class CvHistoryModule {}

@@ -1,1 +1,1 @@
-ALTER ROLE postgres WITH PASSWORD 'postgres';
+ALTER ROLE postgres WITH PASSWORD '0000';

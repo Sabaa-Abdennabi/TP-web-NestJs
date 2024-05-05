@@ -1,4 +1,5 @@
-import {  Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { User } from "src/user/entities/user.entity";
+import {  Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class CvHistory {
@@ -8,11 +9,10 @@ export class CvHistory {
   @Column()
   type: string;
 
-  @Column()
-  name: string;
+  @ManyToOne(() => User, user => user.cvHistories, {eager : true}) // Define many-to-one relationship
+  actionBy: User;
 
-  @Column()
-  actionBy: string;
+  
 
   @Column()
   date: Date;

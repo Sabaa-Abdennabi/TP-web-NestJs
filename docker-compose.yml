@@ -6,7 +6,7 @@ services:
     image: postgres:16.2-alpine
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 285
+      POSTGRES_PASSWORD: 0000
       POSTGRES_DB: postgres
       PGUSER: postgres
       PGDATA: /data/postgres
