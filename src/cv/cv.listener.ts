@@ -10,14 +10,15 @@ export class CvListener {
 
   @OnEvent('cv.added')
   async handleCvAdded(eventData: any) {
-    if (eventData.cvId) {
+    if (eventData.cv) {
       console.log("cvlistener1");
       await this.cvHistoryService.recordEvent({
-        cvId: eventData.cvId,
+        cv: eventData.cv,
         type: 'create',
         date: eventData.date,
         actionBy: eventData.actionBy
       });
+      console.log(eventData)
     } else {
       console.log(eventData);
       console.error('pas de cv :////');
@@ -28,9 +29,8 @@ export class CvListener {
   async handleCvUpdated(eventData: any) {
     console.log("cvlistener2");
     await this.cvHistoryService.recordEvent({
-      cvId: eventData.cvId,
+      cv: eventData.cv,
       type: 'update',
-      performedBy: eventData.actionBy,
       date: eventData.date,
       actionBy: eventData.actionBy
     });
@@ -40,7 +40,7 @@ export class CvListener {
   async handleCvDeleted(eventData: any) {
     console.log("cvlistener3");
     await this.cvHistoryService.recordEvent({
-      cvId: eventData.cvId,
+      cv: eventData.cv,
       type: 'delete',
       performedBy: eventData.actionBy,
       date: eventData.date,

@@ -23,7 +23,7 @@ export class CvService {
    
     console.log({createdCV})
     const eventData = {
-      cvId: createdCV.id, 
+      cv: createdCV, 
       name: createCvDto.name,
       actionBy: createdCV.user,
       date: new Date(),
@@ -52,7 +52,7 @@ export class CvService {
     const found = await this.findById(id);
     if (found) {
       const eventData = {
-        cvId: found.id, 
+        cv: found, 
         name: found.name,
         actionBy: found.user,
         date: new Date(),
@@ -72,7 +72,7 @@ export class CvService {
     if (cv){
     Object.assign(cv, updateCvDto);
     const eventData = {
-      cvId: cv.id, 
+      cv: cv, 
       name: cv.name,
       actionBy: cv.user,
       date: new Date(),

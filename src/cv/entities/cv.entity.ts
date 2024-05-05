@@ -1,3 +1,4 @@
+import { CvHistory } from 'src/cvhistory/cvhistory.entity';
 import { Skill } from '../../skill/entities/skill.entity';
 import { User } from '../../user/entities/user.entity';
 import {
@@ -6,6 +7,7 @@ import {
   Entity,
   ManyToMany,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -32,4 +34,7 @@ export class Cv extends BaseEntity {
 
   @ManyToOne(() => User, (user) => user.cvs, { eager: true })
   user: User;
+
+  @OneToMany(() => CvHistory, cvHistory => cvHistory.cv)
+  histories: CvHistory[];
 }
